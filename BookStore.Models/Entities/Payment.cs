@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Payment : BaseEntity
+    public partial class Payment : BaseEntity
     {
         public Payment()
         {
@@ -10,6 +10,6 @@ namespace BookStore.Models.Entities
         }
 
         public string Type { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

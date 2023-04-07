@@ -2,16 +2,16 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Category : BaseEntity
+    public partial class Category : BaseEntity
     {
         public Category()
         {
-            Categories = new HashSet<Category>();
+            Books = new HashSet<Book>();
         }
 
         public string? CategoryName { get; set; }
-        public Guid SubId { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public Guid? SubId { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
     }
 }

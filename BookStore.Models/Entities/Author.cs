@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Author : BaseEntity
+    public partial class Author : BaseEntity
     {
         public Author()
         {

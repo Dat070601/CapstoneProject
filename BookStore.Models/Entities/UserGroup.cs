@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class UserGroup : BaseEntity
+    public partial class UserGroup : BaseEntity
     {
         public UserGroup()
         {

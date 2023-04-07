@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class BankType : BaseEntity
+    public partial class BankType : BaseEntity
     {
         public BankType()
         {

@@ -1,8 +1,9 @@
 ﻿using BookStore.Models.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Models.Entities
 {
-    public class Order : BaseEntity
+    public partial class Order : BaseEntity
     {
         public Order()
         {
@@ -21,7 +22,7 @@ namespace BookStore.Models.Entities
         public Guid StatusId { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual Account Account { get; set; }
-        public virtual ICollection<Status> Statuses { get; set; }
+        public virtual Status Status { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

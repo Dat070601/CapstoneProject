@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Review : BaseEntity
+    public partial class Review : BaseEntity
     {
         public Review()
         {

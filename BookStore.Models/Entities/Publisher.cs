@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Publisher : BaseEntity
+    public partial class Publisher : BaseEntity
     {
         public Publisher()
         {
@@ -10,7 +10,7 @@ namespace BookStore.Models.Entities
         }
 
         public string PublisherName { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public virtual ICollection<Book> Books { get; set; }
     }
 }

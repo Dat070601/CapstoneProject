@@ -2,7 +2,7 @@
 
 namespace BookStore.Models.Entities
 {
-    public class Credential : BaseEntity
+    public partial class Credential : BaseEntity
     {
         public Credential()
         {
@@ -12,7 +12,7 @@ namespace BookStore.Models.Entities
         public Guid UserGroupId { get; set; }
         public Guid RoleId { get; set; }
         public bool IsActivated { get; set; }
-        public UserGroup UserGroup { get; set; }
-        public Role Role { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

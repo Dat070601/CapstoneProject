@@ -1,6 +1,8 @@
-﻿namespace BookStore.Models.Entities
+﻿using BookStore.Models.Base;
+
+namespace BookStore.Models.Entities
 {
-    public class Cart
+    public partial class Cart : BaseEntity
     {
         public Cart()
         {
