@@ -1,4 +1,18 @@
+using BookStore.Models.DAL;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOptions();
+
+var defaultConnectionString = string.Empty;
+defaultConnectionString = builder.Configuration.GetConnectionString("LocalConnection");
+builder.Services.AddDbContext<BookStoreContext>(
+    options =>
+    {
+        options.UseSqlServer(defaultConnectionString, b => b.MigrationsAssembly("BookStore"));
+        options.UseLazyLoadingProxies();
+    }
+);
 
 // Add services to the container.
 
