@@ -6,7 +6,6 @@ namespace BookStore.Models.Entities
     {
         public Book()
         {
-            BookAuthors = new HashSet<BookAuthor>();
             BookPrices = new HashSet<BookPrice>();
             Images = new HashSet<Image>();
             Reviews = new HashSet<Review>();
@@ -21,14 +20,14 @@ namespace BookStore.Models.Entities
         public DateTime DateCreated { get; set; }
         public int Quantity { get; set; }
         public int NumPage { get; set; }
-        public int CountView { get; set; }
-        public Guid PublisherId { get; set; }
-        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+        public Guid? PublisherId { get; set; }
+        public Guid? AuthorId { get; set; }
         public virtual ICollection<BookPrice> BookPrices { get; set; }
         public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<CartDetail> CartDetails { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Author Author { get; set; }
         public virtual Category Category { get; set; }
         public virtual Publisher Publisher { get; set; }
     }

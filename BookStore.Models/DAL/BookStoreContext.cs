@@ -37,7 +37,6 @@ namespace BookStore.Models.DAL
         public virtual DbSet<Bank> Banks  { get; set; }
         public virtual DbSet<BankType> BankTypes  { get; set; }
         public virtual DbSet<Book> Books  { get; set; }
-        public virtual DbSet<BookAuthor> BookAuthors  { get; set; }
         public virtual DbSet<BookPrice> BookPrices  { get; set; }
         public virtual DbSet<Cart> Carts  { get; set; }
         public virtual DbSet<Credential> Credentials  { get; set; }

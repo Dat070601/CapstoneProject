@@ -14,6 +14,7 @@ namespace BookStore.Models.Entities
         public double BookSalePrice { get; set; }
         public DateTime ActivationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public bool IsActive { get; set; }
         public virtual Book Book { get; set; }
     }
 }

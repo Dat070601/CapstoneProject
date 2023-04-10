@@ -6,10 +6,10 @@ namespace BookStore.Models.Entities
     {
         public Author()
         {
-            BookAuthors = new HashSet<BookAuthor>();
+            Books = new HashSet<Book>();
         }
 
         public string? AuthorName { get; set; }
-        public virtual ICollection<BookAuthor> BookAuthors {get; set;}
+        public virtual ICollection<Book> Books {get; set;}
     }
 }
