@@ -10,9 +10,9 @@ namespace BookStore.Models.Entities
         }
 
         public string? ImageUrl { get; set; }
-        public Guid BookId { get; set; }
-        public Guid ShopId { get; set; }
-        public Guid AccountId { get; set; }
+        public Guid? BookId { get; set; }
+        public Guid? ShopId { get; set; }
+        public Guid? AccountId { get; set; }
         public virtual Book Book { get; set; }
         public virtual Shop Shop { get; set; }
         public virtual Account Account { get; set; }

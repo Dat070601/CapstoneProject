@@ -21,14 +21,10 @@ namespace BookStore.Models.DAL
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Image>(entity =>
-            {
-                entity.HasOne(e => e.Shop).WithMany(e => e.Images).HasForeignKey(e=> e.ShopId).OnDelete(DeleteBehavior.ClientSetNull);
-            });
-
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Image>().HasOne(e => e.Shop).WithMany().OnDelete(DeleteBehavior.Restrict);
+        //}
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
@@ -37,7 +33,7 @@ namespace BookStore.Models.DAL
         public virtual DbSet<Bank> Banks  { get; set; }
         public virtual DbSet<BankType> BankTypes  { get; set; }
         public virtual DbSet<Book> Books  { get; set; }
-        public virtual DbSet<BookPrice> BookPrices  { get; set; }
+        public virtual DbSet<BookPrice> BookPrices  { get; set; }            
         public virtual DbSet<Cart> Carts  { get; set; }
         public virtual DbSet<Credential> Credentials  { get; set; }
         public virtual DbSet<HistoryTransaction> HistoryTransactions  { get; set; }
