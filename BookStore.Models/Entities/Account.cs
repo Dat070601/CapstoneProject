@@ -11,8 +11,8 @@ namespace BookStore.Models.Entities
             Banks = new HashSet<Bank>();
             Orders = new HashSet<Order>();
         }
-
-        public Guid ShopId { get; set; }
+#nullable enable
+        public Guid? ShopId { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Name { get; set; }

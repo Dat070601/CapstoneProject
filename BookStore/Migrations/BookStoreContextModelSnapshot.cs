@@ -52,7 +52,7 @@ namespace BookStore.Migrations
                     b.Property<Guid>("ResetPasswordCode")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ShopId")
+                    b.Property<Guid?>("ShopId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserGroupId")
@@ -64,7 +64,8 @@ namespace BookStore.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ShopId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ShopId] IS NOT NULL");
 
                     b.HasIndex("UserGroupId");
 
@@ -624,9 +625,7 @@ namespace BookStore.Migrations
                 {
                     b.HasOne("BookStore.Models.Entities.Shop", "Shop")
                         .WithOne("Account")
-                        .HasForeignKey("BookStore.Models.Entities.Account", "ShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BookStore.Models.Entities.Account", "ShopId");
 
                     b.HasOne("BookStore.Models.Entities.UserGroup", "UserGroup")
                         .WithMany("Accounts")

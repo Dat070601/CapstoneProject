@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Models.DTOs
+namespace BookStore.Models.DataViewModel.Requests
 {
-    internal class Class1
+    public class ForgotPasswordRequest
     {
+        public string? Email { get; set; }
     }
 }
