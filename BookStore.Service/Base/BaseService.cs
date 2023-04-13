@@ -1,4 +1,5 @@
 ﻿using BookStore.Models.DAL.Interfaces;
+using BookStore.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,10 @@ namespace BookStore.Service.Base
     public abstract class BaseService
     {
         protected readonly IUnitOfWork unitOfWork;
-        public BaseService(IUnitOfWork unitOfWork)
+        protected readonly IMapperCustom mapperCustom;
+        public BaseService(IUnitOfWork unitOfWork, IMapperCustom mapperCustom)
         {
+            this.mapperCustom = mapperCustom;
             this.unitOfWork = unitOfWork;
         }
     }

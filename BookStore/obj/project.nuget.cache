@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "0xRi4bSfUfz1tPniXgJdWYLvnwBC3BoWCXvr6AKy0rnHfrRpbSkicXgI/tYmXDJ4ZyMS5qNw1Rixk1H58ofhKw==",
+  "dgSpecHash": "js/zLfwN5MjSZMnG/yMJhwzTP/GDEb/6Zp74vt/Lo/LtPa2VKtj8X4+H/tLB65jDSu5g3P18kvR1E8lffADbJQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\mailkit\\3.6.0\\mailkit.3.6.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
-    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.15\\microsoft.entityframeworkcore.6.0.15.nupkg.sha512",

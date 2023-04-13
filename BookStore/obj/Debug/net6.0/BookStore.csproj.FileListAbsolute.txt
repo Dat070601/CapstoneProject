@@ -81,3 +81,4 @@ C:\Users\dat.dinhhoang\source\repos\BookStore\BookStore\bin\Debug\net6.0\BouncyC
 C:\Users\dat.dinhhoang\source\repos\BookStore\BookStore\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\dat.dinhhoang\source\repos\BookStore\BookStore\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\dat.dinhhoang\source\repos\BookStore\BookStore\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\dat.dinhhoang\source\repos\BookStore\BookStore\bin\Debug\net6.0\AutoMapper.dll

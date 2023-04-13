@@ -236,7 +236,8 @@ namespace BookStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BookId")
+                        .IsUnique();
 
                     b.ToTable("BookPrices");
                 });
@@ -694,8 +695,8 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Entities.BookPrice", b =>
                 {
                     b.HasOne("BookStore.Models.Entities.Book", "Book")
-                        .WithMany("BookPrices")
-                        .HasForeignKey("BookId")
+                        .WithOne("BookPrice")
+                        .HasForeignKey("BookStore.Models.Entities.BookPrice", "BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -886,7 +887,8 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Models.Entities.Book", b =>
                 {
-                    b.Navigation("BookPrices");
+                    b.Navigation("BookPrice")
+                        .IsRequired();
 
                     b.Navigation("CartDetails");
 

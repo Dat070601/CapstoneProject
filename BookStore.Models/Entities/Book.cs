@@ -6,10 +6,10 @@ namespace BookStore.Models.Entities
     {
         public Book()
         {
-            BookPrices = new HashSet<BookPrice>();
             Images = new HashSet<Image>();
             Reviews = new HashSet<Review>();
             CartDetails = new HashSet<CartDetail>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public Guid CategoryId { get; set; }
@@ -22,7 +22,7 @@ namespace BookStore.Models.Entities
         public int NumPage { get; set; }
         public Guid? PublisherId { get; set; }
         public Guid? AuthorId { get; set; }
-        public virtual ICollection<BookPrice> BookPrices { get; set; }
+        public virtual BookPrice BookPrice { get; set; }
         public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<CartDetail> CartDetails { get; set; }

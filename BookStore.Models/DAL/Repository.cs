@@ -27,6 +27,12 @@ namespace BookStore.Models.DAL
         {
             return await DbSet.ToListAsync();
         }
+
+        public virtual IQueryable<T> GetAllPaging()
+        {
+            return DbSet;
+        }
+
         public IQueryable<T> GetQuery(Expression<Func<T, bool>> expression)
         {
             return DbSet.Where(expression);

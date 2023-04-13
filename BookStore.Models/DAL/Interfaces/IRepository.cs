@@ -15,6 +15,7 @@ namespace BookStore.Models.DAL.Interfaces
         Task<T> AddAsync(T entity);
         Task Delete(Expression<Func<T, bool>> expression);
         void Update(T entity);
+        IQueryable<T> GetAllPaging();
         void Delete(T entity);
     }
 }

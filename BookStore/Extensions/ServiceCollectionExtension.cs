@@ -1,8 +1,10 @@
-﻿using BookStore.Models.DAL;
+﻿using AutoMapper;
+using BookStore.Models.DAL;
 using BookStore.Models.DAL.Interfaces;
 using BookStore.Models.DTOs.Settings;
 using BookStore.Service;
 using BookStore.Service.Interfaces;
+using BookStore.Service.Mapping;
 using BookStore.Service.TokenGenerators;
 using BookStore.Service.TokenValidators;
 
@@ -16,6 +18,14 @@ namespace BookStore.Extensions
             services.AddScoped<DbFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapperProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
             return services;
         }
 
@@ -25,6 +35,7 @@ namespace BookStore.Extensions
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<IRefreshTokenRepository, RefreshTokenRepository>()
                     .AddScoped<IUserGroupRepository, UserGroupRepository>()
+                    .AddScoped<IBookRepository,BookRepository>()
                     .AddScoped<ICartRepository, CartRepository>();
             return services;
         }
@@ -38,6 +49,8 @@ namespace BookStore.Extensions
                 .AddScoped<AccessTokenGenerator>()
                 .AddScoped<RefreshTokenGenerator>()
                 .AddScoped<RefreshTokenValidator>()
+                .AddScoped<IBookService,BookService>()
+                .AddScoped<IMapperCustom, Service.Mapping.Mapper>()
                 .AddScoped<IAuthenticateService, AuthenticateService>()
                 .AddScoped<TokenGenerator>();
         }

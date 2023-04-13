@@ -23,7 +23,7 @@ namespace BookStore.Service
                Encryptor encryptor,
                IUserGroupRepository userGroupRepository,
                ICartRepository cartRepository,
-               IEmailSender emailSender) : base(unitOfWork)
+               IEmailSender emailSender, IMapperCustom mapperCustom) : base(unitOfWork, mapperCustom)
         {
             this.userRepository = userRepository;
             this.encryptor = encryptor;

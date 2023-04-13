@@ -25,7 +25,7 @@ namespace BookStore.Service
             AccessTokenGenerator accessTokenGenerator,
             RefreshTokenGenerator refreshTokenGenerator,
             IRefreshTokenRepository refreshTokenRepository,
-            IUserRepository userRepository) : base(unitOfWork)
+            IUserRepository userRepository, IMapperCustom mapperCustom) : base(unitOfWork,mapperCustom)
         {
             this.accessTokenGenerator = accessTokenGenerator;
             this.refreshTokenGenerator = refreshTokenGenerator;

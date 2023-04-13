@@ -1,5 +1,7 @@
+using AutoMapper;
 using BookStore.Extensions;
 using BookStore.Models.DAL;
+using BookStore.Service.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -37,6 +39,7 @@ builder.Services.AddAuthentication(options =>
         RequireExpirationTime = true,
     };
 });
+
 // Add services to the container.
 
 builder.Services.AddControllers();
