@@ -9,6 +9,6 @@ namespace BookStore.Models.DataViewModel.Responses
 {
     public class CartResponse : GeneralResponses
     {
-
+        public List<CartDetailViewModel>? cartDetailViewModels { get; set; } = new List<CartDetailViewModel>(); 
     }
 }

@@ -1616,6 +1616,7 @@
       "BookStore.Models >= 1.0.0",
       "MailKit >= 3.6.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 7.0.0",
+      "Microsoft.Extensions.Logging >= 6.0.0",
       "MimeKit >= 3.6.1",
       "System.IdentityModel.Tokens.Jwt >= 6.28.1"
     ]
@@ -1674,6 +1675,10 @@
           "Microsoft.Extensions.Configuration.Abstractions": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "Microsoft.Extensions.Logging": {
+            "target": "Package",
+            "version": "[6.0.0, )"
           },
           "MimeKit": {
             "target": "Package",

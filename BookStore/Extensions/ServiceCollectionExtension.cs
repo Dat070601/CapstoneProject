@@ -17,6 +17,7 @@ namespace BookStore.Extensions
             services.AddScoped((Func<IServiceProvider, Func<BookStoreContext>>)((provider) => () => provider.GetService<BookStoreContext>()));
             services.AddScoped<DbFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ILogger, Logger<CartService>>();
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -36,7 +37,9 @@ namespace BookStore.Extensions
                     .AddScoped<IRefreshTokenRepository, RefreshTokenRepository>()
                     .AddScoped<IUserGroupRepository, UserGroupRepository>()
                     .AddScoped<IBookRepository,BookRepository>()
-                    .AddScoped<ICartRepository, CartRepository>();
+                    .AddScoped<ICartRepository, CartRepository>()
+                    .AddScoped<ICartDetailRepository, CartDetailRepository>()
+                    .AddScoped<IOrderRepository, OrderRepository>();
             return services;
         }
         public static IServiceCollection AddServices(this IServiceCollection services)
@@ -52,6 +55,7 @@ namespace BookStore.Extensions
                 .AddScoped<IBookService,BookService>()
                 .AddScoped<IMapperCustom, Service.Mapping.Mapper>()
                 .AddScoped<IAuthenticateService, AuthenticateService>()
+                .AddScoped<ICartService, CartService>()
                 .AddScoped<TokenGenerator>();
         }
     }

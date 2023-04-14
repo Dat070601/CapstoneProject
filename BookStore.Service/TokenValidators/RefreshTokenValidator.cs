@@ -39,7 +39,7 @@ namespace BookStore.Service.TokenValidators
                 return new RefreshTokenResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Refresh Token không hợp lệ !",
+                    Message = "Refresh Token không hợp lệ !",
                 };
             }
 

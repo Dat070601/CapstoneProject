@@ -42,7 +42,7 @@ namespace BookStore.Service.TokenGenerators
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = validRefreshToken.ErrorMessage
+                    Message = validRefreshToken.Message
                 };
             }
 
@@ -54,7 +54,7 @@ namespace BookStore.Service.TokenGenerators
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = rs.ErrorMessage
+                    Message = rs.Message
                 };
             }
 
@@ -67,7 +67,7 @@ namespace BookStore.Service.TokenGenerators
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = deleteRefreshToken.ErrorMessage
+                    Message = deleteRefreshToken.Message
                 };
             }
             // 4. Find user have that refresh token
@@ -86,7 +86,7 @@ namespace BookStore.Service.TokenGenerators
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthSettings:RefreshTokenSecret"]));
             var issuer = configuration["AuthSettings:Issuer"];
             var audience = configuration["AuthSettings:Audience"];
-            var expires = DateTime.UtcNow.AddMonths(4); // expires in 4 months later
+            var expires = DateTime.Now.AddMonths(4); // expires in 4 months later
 
             return tokenGenerator.GenerateToken(key, issuer, audience, expires);
         }
@@ -99,7 +99,7 @@ namespace BookStore.Service.TokenGenerators
                 return new RefreshTokenResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Refresh Token không tìm thấy trong cơ sở dữ liệu !",
+                    Message = "Refresh Token không tìm thấy trong cơ sở dữ liệu !",
                 };
             }
 
@@ -124,7 +124,7 @@ namespace BookStore.Service.TokenGenerators
                 return new RefreshTokenResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = e.Message,
+                    Message = e.Message,
                 };
             }
         }

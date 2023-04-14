@@ -117,6 +117,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "MimeKit": {
               "target": "Package",
               "version": "[3.6.1, )"

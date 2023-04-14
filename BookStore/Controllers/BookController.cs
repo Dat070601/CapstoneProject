@@ -26,7 +26,7 @@ namespace BookStore.Controllers
         public async Task<IActionResult> ViewDetailBook(Guid id)
         {
             var res = await bookService.GetBookById(id);
-            return res.IsSuccess ? Ok(res) : BadRequest(res.ErrorMessage);
+            return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
         }
     }
 }

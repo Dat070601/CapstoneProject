@@ -56,7 +56,7 @@ namespace BookStore.Service
                     return new UserResponse
                     {
                         IsSuccess = false,
-                        ErrorMessage = "Không thể tìm thấy Email được đăng ký !",
+                        Message = "Không thể tìm thấy Email được đăng ký !",
                     };
                 }
 
@@ -78,7 +78,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = e.Message,
+                    Message = e.Message,
                 };
             }
         }
@@ -99,7 +99,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Tài Khoản hoặc mật khẩu không đúng !"
+                    Message = "Tài Khoản hoặc mật khẩu không đúng !"
                 };
             }
 
@@ -109,7 +109,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Kiểm tra mail đã đăng ký để kích hoạt tài khoản!"
+                    Message = "Kiểm tra mail đã đăng ký để kích hoạt tài khoản!"
                 };
             }
             
@@ -119,7 +119,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Sai mật khẩu hoặc tên đăng nhập !",
+                    Message = "Sai mật khẩu hoặc tên đăng nhập !",
                 };
             }
             return new UserResponse
@@ -141,7 +141,7 @@ namespace BookStore.Service
                     return new UserResponse
                     {
                         IsSuccess = false,
-                        ErrorMessage = "Email đã được sử dụng !",
+                        Message = "Email đã được sử dụng !",
                     };
                 }
 
@@ -151,7 +151,7 @@ namespace BookStore.Service
                     return new UserResponse
                     {
                         IsSuccess = false,
-                        ErrorMessage = "Mật khẩu xác nhận không khớp !",
+                        Message = "Mật khẩu xác nhận không khớp !",
                     };
                 }
 
@@ -185,7 +185,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = e.Message,
+                    Message = e.Message,
                 };
             }
         }
@@ -203,7 +203,7 @@ namespace BookStore.Service
                     return new UserResponse
                     {
                         IsSuccess = false,
-                        ErrorMessage = "Không tìm thấy tài khoản !",
+                        Message = "Không tìm thấy tài khoản !",
                     };
                 }
 
@@ -222,7 +222,7 @@ namespace BookStore.Service
                 return new UserResponse
                 {
                     IsSuccess = false,
-                    ErrorMessage = e.Message,
+                    Message = e.Message,
                 };
             }
         }

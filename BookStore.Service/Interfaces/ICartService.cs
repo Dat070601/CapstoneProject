@@ -10,6 +10,7 @@ namespace BookStore.Service.Interfaces
 {
     public interface ICartService
     {
-        Task<CartResponse> AddCart(CartRequest req);
+        Task<CartResponse> AddCart(CartRequest req, Guid Id);
+        Task<CartResponse> GetCart(Guid Id);
     }
 }

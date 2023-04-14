@@ -15,7 +15,7 @@ namespace BookStore.Service.TokenGenerators
                     issuer,
                     audience,
                     claims,
-                    DateTime.UtcNow,
+                    DateTime.Now,
                     utcExpirationTime,
                     credentials);
             return token;

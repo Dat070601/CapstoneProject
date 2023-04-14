@@ -33,7 +33,7 @@ namespace BookStore.Service
                 return new BookDetailViewModel()
                 {
                     IsSuccess = false,
-                    ErrorMessage = "Can't find Product!"
+                    Message = "Can't find Product!"
                 };
             }
             var result = mapperCustom.MapBookDetail(book);

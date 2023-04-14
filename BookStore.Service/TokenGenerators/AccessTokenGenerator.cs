@@ -30,7 +30,7 @@ namespace BookStore.Service.TokenGenerators
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthSettings:AccessTokenSecret"]!));
             var issuer = configuration["AuthSettings:Issuer"];
             var audience = configuration["AuthSettings:Audience"];
-            var expires = DateTime.UtcNow.AddMinutes(30); // expires in 30 minutes later
+            var expires = DateTime.Now.AddMinutes(30); // expires in 30 minutes later
             var token = tokenGenerator.GenerateToken(key, issuer, audience, expires, claims);
             return token;
         }

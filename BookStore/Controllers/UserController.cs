@@ -41,10 +41,10 @@ namespace BookStore.Controllers
                 }
                 else
                 {
-                    return BadRequest(res.ErrorMessage);
+                    return BadRequest(res.Message);
                 }
             }
-            return BadRequest(rs.ErrorMessage);
+            return BadRequest(rs.Message);
         }
 
         [HttpPost("refresh-token")]
@@ -59,7 +59,7 @@ namespace BookStore.Controllers
                     return Ok(responseTokens);
                 }
 
-                return BadRequest(rs.ErrorMessage);
+                return BadRequest(rs.Message);
             }
             catch (Exception e)
             {
@@ -77,7 +77,7 @@ namespace BookStore.Controllers
                 return Ok("Vui lòng vào Email kiểm tra tin nhắn !");
             }
 
-            return BadRequest(rs.ErrorMessage);
+            return BadRequest(rs.Message);
         }
 
         [HttpGet("verify-account")]
@@ -99,7 +99,7 @@ namespace BookStore.Controllers
             {
                 return Ok("Kiểm tra Email của bạn để thay đổi mật khẩu !");
             }
-            return BadRequest(rs.ErrorMessage);
+            return BadRequest(rs.Message);
         }
 
         [HttpPost("reset-password")]
@@ -110,7 +110,7 @@ namespace BookStore.Controllers
             {
                 return Ok("Bạn đã thay đổi mật khẩu thành công !");
             }
-            return BadRequest(rs.ErrorMessage);
+            return BadRequest(rs.Message);
         }
 
         [HttpGet("reset-password")]
