@@ -407,6 +407,9 @@ namespace BookStore.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -425,8 +428,7 @@ namespace BookStore.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.HasIndex("StatusId")
-                        .IsUnique();
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Orders");
                 });
@@ -797,8 +799,8 @@ namespace BookStore.Migrations
                         .IsRequired();
 
                     b.HasOne("BookStore.Models.Entities.Status", "Status")
-                        .WithOne("Order")
-                        .HasForeignKey("BookStore.Models.Entities.Order", "StatusId")
+                        .WithMany("Orders")
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -941,8 +943,7 @@ namespace BookStore.Migrations
                 {
                     b.Navigation("HistoryTransactions");
 
-                    b.Navigation("Order")
-                        .IsRequired();
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BookStore.Models.Entities.UserGroup", b =>

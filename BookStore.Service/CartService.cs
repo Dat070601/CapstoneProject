@@ -130,6 +130,7 @@ namespace BookStore.Service
                 {
                     var cartDetail = new CartDetailViewModel
                     {
+                        BookId = item.BookId,
                         BookName = item.Book.BookName,
                         ImageUrl = mapperCustom.MapImages(item.Book.Images.ToList())[0].ImageUrl,
                         Price = item.Book.BookPrice.BookSalePrice,
@@ -141,6 +142,7 @@ namespace BookStore.Service
                 {
                     var cart = new CartDetailViewModel
                     {
+                        BookId = item.BookId,
                         BookName = item.Book.BookName,
                         ImageUrl = mapperCustom.MapImages(item.Book.Images.ToList())[0].ImageUrl,
                         Price = item.Book.BookPrice.BookDefaultPrice,

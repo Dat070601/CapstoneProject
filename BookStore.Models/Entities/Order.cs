@@ -18,6 +18,7 @@ namespace BookStore.Models.Entities
         public string? City { get; set; }
         public string? Country { get; set; }
         public double Total { get; set; }
+        public string? Message { get; set; }
         public Guid BillId { get; set; }
         public Guid StatusId { get; set; }
         public virtual Payment Payment { get; set; }

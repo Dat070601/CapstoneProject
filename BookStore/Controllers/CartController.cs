@@ -32,7 +32,7 @@ namespace BookStore.Controllers
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        //[Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> GetProduct()
         {
             //var handler = new JwtSecurityTokenHandler();
@@ -40,7 +40,8 @@ namespace BookStore.Controllers
             //var tokenString = handler.ReadToken(token) as JwtSecurityToken;
             //var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
             //var res = await cartService.GetCart(userId);
-            return Ok(Request.Headers["Authorization"].ToString().Split(" ")[1]);
-        }
+            var res = await cartService.GetCart(new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+            return Ok(res);
+;        }
     }
 }
