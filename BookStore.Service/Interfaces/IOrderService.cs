@@ -13,5 +13,6 @@ namespace BookStore.Service.Interfaces
     {
         Task<OrderResponse> AddOrder(OrderRequest orderRequest, Guid cusId);
         Task<OrderViewModel> GetOrder(Guid orderId);
+        Task<OrderResponse> ChangeStatus(StatusRequest status, Guid orderId);
     }
 }

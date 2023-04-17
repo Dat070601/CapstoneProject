@@ -5,6 +5,7 @@ using BookStore.Models.DataViewModel.Responses;
 using BookStore.Models.Entities;
 using BookStore.Service.Base;
 using BookStore.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BookStore.Service
@@ -29,37 +30,84 @@ namespace BookStore.Service
             this.cartDetailRepository = cartDetailRepository;
         }
 
-        private async Task<CartResponse> checkQuantities(CartRequest req)
+        public async Task<CartResponse> UpdateCart(CartRequest cartReq, Guid cusId)
         {
-            if (req.Quantity <= 0 )
+            try
+            {
+                var findCart = await cartRepository.GetQuery(c => c.AccountId == cusId).SingleAsync();
+                var findCartDetail = await cartDetailRepository.GetQuery(cd => cd.CartId == findCart.Id).ToListAsync();
+                foreach (var item in findCartDetail)
+                {
+                    if (item.BookId == cartReq.BookId)
+                    {
+                        item.Quantity = cartReq.Quantity;
+                        cartDetailRepository.Update(item);
+                    }
+                }
+                await unitOfWork.CommitTransaction();
+                return new CartResponse
+                {
+                    IsSuccess = true,
+                    Message = "Update Cart success!"
+                };
+            }
+            catch (InvalidOperationException e)
             {
                 return new CartResponse
                 {
                     IsSuccess = false,
-                    Message = "Quantity must be greater than 0!"
+                    Message = "Some properties is valid !",
                 };
             }
-            var findProduct = await bookRepository.FindAsync(bk => bk.Id == req.BookId);
-            if (findProduct == null)
+            catch (Exception e)
             {
                 return new CartResponse
                 {
                     IsSuccess = false,
-                    Message = "Can't find product!"
+                    Message = "System error, Add Product to Cart was fasle and please try again later! "
                 };
             }
-            if (findProduct.Quantity < req.Quantity)
+        }
+
+        public async Task<CartResponse> DeleteCart(List<CartOptionRequest> cartReq, Guid cusId)
+        {
+            try
+            {
+                var findCart = await cartRepository.GetQuery(c => c.AccountId == cusId).SingleAsync();
+                var findCartDetail = await cartDetailRepository.GetQuery(cd => cd.CartId == findCart.Id).ToListAsync();
+                foreach (var item in findCartDetail)
+                {
+                    foreach (var cart in cartReq)
+                    {
+                        if(item.BookId == cart.BookId)
+                        {
+                            cartDetailRepository.Delete(item);
+                        }
+                    }
+                }
+                await unitOfWork.CommitTransaction();
+                return new CartResponse
+                {
+                    IsSuccess = true,
+                    Message = "Delete Cart success!"
+                };
+            }
+            catch (InvalidOperationException e)
             {
                 return new CartResponse
                 {
                     IsSuccess = false,
-                    Message = "Can't add to cart more than available quantity!"
+                    Message = "Some properties is valid !",
                 };
             }
-            return new CartResponse
+            catch (Exception e)
             {
-                IsSuccess = true,
-            };
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "System error, Add Product to Cart was fasle and please try again later! "
+                };
+            }
         }
 
         public async Task<CartResponse> AddCart(CartRequest req, Guid Id)
@@ -152,6 +200,39 @@ namespace BookStore.Service
                 }
             }
             return result;
+        }
+
+        private async Task<CartResponse> checkQuantities(CartRequest req)
+        {
+            if (req.Quantity <= 0)
+            {
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "Quantity must be greater than 0!"
+                };
+            }
+            var findProduct = await bookRepository.FindAsync(bk => bk.Id == req.BookId);
+            if (findProduct == null)
+            {
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "Can't find product!"
+                };
+            }
+            if (findProduct.Quantity < req.Quantity)
+            {
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "Can't add to cart more than available quantity!"
+                };
+            }
+            return new CartResponse
+            {
+                IsSuccess = true,
+            };
         }
     }
 }

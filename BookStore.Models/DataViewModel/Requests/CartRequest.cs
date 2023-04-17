@@ -9,9 +9,7 @@ namespace BookStore.Models.DataViewModel.Requests
 {
     public class CartRequest
     {
-        [Required]
         public Guid BookId { get; set; }
-        [Required]
         public int Quantity { get; set; }
     }
 }

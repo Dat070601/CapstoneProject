@@ -3,7 +3,7 @@
     public class ReviewViewModel
     {
         public Guid ReviewId { get; set; }
-        public Guid CategoryId { get; set; }
+        public Guid AccountId { get; set; }
         public string? ReviewText { get; set; }
     }
 }

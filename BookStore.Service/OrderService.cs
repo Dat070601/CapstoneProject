@@ -24,6 +24,7 @@ namespace BookStore.Service
         private readonly IBookRepository bookRepository;
         private readonly ICartRepository cartRepository;
         private readonly ICartDetailRepository cartDetailRepository;
+        private readonly IStatusRepository statusRepository;
         public OrderService(
             IUnitOfWork unitOfWork, 
             IMapperCustom mapperCustom,
@@ -32,7 +33,8 @@ namespace BookStore.Service
             IOrderDetailRepository orderDetailRepository,
             ICartRepository cartRepository,
             ICartDetailRepository cartDetailRepository,
-            IBookRepository bookRepository) : base(unitOfWork, mapperCustom)
+            IBookRepository bookRepository,
+            IStatusRepository statusRepository) : base(unitOfWork, mapperCustom)
         {
             this.orderRepository = orderRepository;
             this.orderDetailRepository = orderDetailRepository;
@@ -40,6 +42,55 @@ namespace BookStore.Service
             this.bookRepository = bookRepository;
             this.cartDetailRepository = cartDetailRepository;
             this.cartRepository = cartRepository;
+            this.statusRepository = statusRepository;
+        }
+
+        public async Task<OrderResponse> ChangeStatus(StatusRequest status, Guid orderId)
+        {
+            try
+            {
+                var order = await orderRepository.GetQuery(or => or.Id == orderId).SingleAsync();
+                var findStatus = await statusRepository.GetQuery(st => st.NameStatus.Equals(status.StatusName)).SingleAsync();
+                if(status.StatusName!.Equals("Đã Hủy"))
+                {
+                    order.StatusId = findStatus.Id;
+                    var orderDetail = await orderDetailRepository.GetQuery(ord => ord.OrderId == orderId).ToListAsync();
+                    foreach (var item in orderDetail)
+                    {
+                        var findBook = await bookRepository.GetQuery(b => b.Id == item.BookId).SingleAsync();
+                        findBook.Quantity += item.Quantity;
+                        findBook.Sold -= item.Quantity;
+                        bookRepository.Update(findBook);
+                    }
+                }
+                else
+                {
+                    order.StatusId = findStatus.Id;
+                    orderRepository.Update(order);
+                }
+                await unitOfWork.CommitTransaction();
+                return new OrderResponse
+                {
+                    IsSuccess = true,
+                    Message = "Change status order is success !!"
+                };
+            }
+            catch (NullReferenceException)
+            {
+                return new OrderResponse
+                {
+                    IsSuccess = false,
+                    Message = "Some properties is Null!"
+                };
+            }
+            catch (Exception)
+            {
+                return new OrderResponse
+                {
+                    IsSuccess = false,
+                    Message = "System error, please try again later!"
+                };
+            }
         }
 
         public async Task<OrderResponse> AddOrder(OrderRequest orderRequest, Guid cusId)
@@ -131,6 +182,14 @@ namespace BookStore.Service
         {
             foreach (var item in orderReq.OrderDetails!)
             {
+                if (item.Quantity == 0)
+                {
+                    return new OrderResponse
+                    {
+                        IsSuccess = false,
+                        Message = "Can't order quantity less than 0!"
+                    };
+                }
                 var price = await bookPriceRepository.GetPriceByBookId(item.BookId);
                 var orderDetail = new OrderDetail
                 {

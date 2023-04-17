@@ -42,6 +42,28 @@ namespace BookStore.Controllers
             //var res = await cartService.GetCart(userId);
             var res = await cartService.GetCart(new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
             return Ok(res);
-;        }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBookInCart([FromBody] List<CartOptionRequest> cartReq)
+        {
+            var res = await cartService.DeleteCart(cartReq, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+            if(res.IsSuccess)
+            {
+                return Ok(res.Message);
+            }
+            return BadRequest(res.Message);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateBookInCart([FromBody] CartRequest cartReq)
+        {
+            var res = await cartService.UpdateCart(cartReq, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+            if(res.IsSuccess)
+            {
+                return Ok(res.Message);
+            }
+            return BadRequest(res.Message);
+        }
     }
 }

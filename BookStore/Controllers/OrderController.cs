@@ -1,9 +1,7 @@
 ﻿using BookStore.Models.DataViewModel.Requests;
-using BookStore.Service;
 using BookStore.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Logging;
 
 namespace BookStore.Controllers
 {
@@ -33,6 +31,13 @@ namespace BookStore.Controllers
         public async Task<IActionResult> GetOrder(Guid orderId)
         {
             var res = await orderService.GetOrder(orderId);
+            return Ok(res);
+        }
+
+        [HttpPut("status/{orderId}")]
+        public async Task<IActionResult> UpdateStatus([FromBody] StatusRequest status, Guid orderId)
+        {
+            var res = await orderService.ChangeStatus(status, orderId);
             return Ok(res);
         }
     }
