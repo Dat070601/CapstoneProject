@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
+    <Compile Remove="DataViewModel\Interfaces\**" />
+    <EmbeddedResource Remove="DataViewModel\Interfaces\**" />
+    <None Remove="DataViewModel\Interfaces\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataViewModel\Interfaces\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
   </ItemGroup>
 
 </Project>

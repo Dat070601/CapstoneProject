@@ -7888,19 +7888,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore\\BookStore.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore\\BookStore.csproj",
       "projectName": "BookStore",
-      "projectPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore\\BookStore.csproj",
-      "packagesPath": "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore\\BookStore.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dat.dinhhoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7914,11 +7914,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj": {
-              "projectPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj"
+            "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj"
             },
-            "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Service\\BookStore.Service.csproj": {
-              "projectPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Service\\BookStore.Service.csproj"
+            "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Service\\BookStore.Service.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Service\\BookStore.Service.csproj"
             }
           }
         }
