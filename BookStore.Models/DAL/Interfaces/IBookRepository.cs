@@ -10,5 +10,6 @@ namespace BookStore.Models.DAL.Interfaces
     public interface IBookRepository : IRepository<Book>
     {
         Task<List<Book>> GetAllProductPaging(int page, int pageSize);
+        Task<List<Book>> SearchBookWithFuzzy(string nameBook);
     }
 }
