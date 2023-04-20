@@ -44,7 +44,9 @@ namespace BookStore.Extensions
                     .AddScoped<IOrderRepository, OrderRepository>()
                     .AddScoped<IStatusRepository, StatusRepository>()
                     .AddScoped<IReviewRepository, ReviewRepository>()
-                    .AddScoped<ICategoryRepository, CategoryRepository>();
+                    .AddScoped<ICategoryRepository, CategoryRepository>()
+                    .AddScoped<IHistoryTransactionsRepository, HistoryTransactionsRepository>()
+                    .AddScoped<IAuthorRepository, AuthorRepository>();
             return services;
         }
         public static IServiceCollection AddServices(this IServiceCollection services)
@@ -65,7 +67,9 @@ namespace BookStore.Extensions
                 .AddScoped<IReviewService, ReviewService>()
                 .AddScoped<TokenGenerator>()
                 .AddScoped<ICategoryService, CategoryService>()
-                .AddScoped<ISearcbService, SearchService>();
+                .AddScoped<ISearcbService, SearchService>()
+                .AddScoped<IPaymentService, PaymentService>()
+                .AddScoped<IAuthorService, AuthorService>();
         }
     }
 }

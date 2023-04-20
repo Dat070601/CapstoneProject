@@ -17,6 +17,7 @@ namespace BookStore.Service.Mapping
             CreateMap<Image, ImageViewModel>();
             CreateMap<Book, BookDetailViewModel>();
             CreateMap<Review, ReviewViewModel>();
+            CreateMap<Author, AuthorViewModel>();
         }
     }
 }

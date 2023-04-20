@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "resIOVR97iuX2vkow3NTI1OCWyzIy59WXz+rRUcOAML8c37dUN+Te+ARPu+PmGR830//sK6L4xYd6Eybg6qJBA==",
+  "dgSpecHash": "aUfB51QjoEqTdFze7G6ASgQfLWAg1dbv0fGaGtbOPy+HzCslrBQ9X8R6GrgA3TwGGBZ3Ww2g13Vwe97JSaiDug==",
   "success": true,
   "projectFilePath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\mailkit\\3.6.0\\mailkit.3.6.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
+    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.15\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.15.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -99,6 +101,7 @@
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.io.compression.zipfile\\4.3.0\\system.io.compression.zipfile.4.3.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",

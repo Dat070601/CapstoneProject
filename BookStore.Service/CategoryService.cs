@@ -58,7 +58,7 @@ namespace BookStore.Service
             var listCate = new List<CategoryViewModel>();
             foreach (var item in categoryViewModel)
             {
-                var categoryChild = await GetCategoryChild(item.Id);
+                var categoryChild = await getCategoryChild(item.Id);
                 var category = new CategoryViewModel
                 {
                     CategoryId = item.Id,
@@ -70,7 +70,7 @@ namespace BookStore.Service
             return listCate;
         }
 
-        private async Task<List<CategoryViewModel>> GetCategoryChild(Guid id)
+        private async Task<List<CategoryViewModel>> getCategoryChild(Guid id)
         {
             var categoryChild = await categoryRepository.GetCategoryBySubCategory(id);
             var listChild = new List<CategoryViewModel>();

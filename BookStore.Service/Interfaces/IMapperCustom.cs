@@ -11,6 +11,7 @@ namespace BookStore.Service.Interfaces
     public interface IMapperCustom
     {
         List<BookViewModel> MapBookPagging(List<Book> books);
+        List<AuthorViewModel> MapAuthors(List<Author> authors);
         List<ImageViewModel> MapImages(List<Image> images);
         List<ReviewViewModel> MapReview(List<Review> reviews);
         BookDetailViewModel MapBookDetail(Book bookDetail);

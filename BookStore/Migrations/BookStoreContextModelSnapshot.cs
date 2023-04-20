@@ -17,7 +17,7 @@ namespace BookStore.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -333,9 +333,6 @@ namespace BookStore.Migrations
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BillId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<double>("Money")
                         .HasColumnType("float");
 
@@ -394,9 +391,6 @@ namespace BookStore.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("BillId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");

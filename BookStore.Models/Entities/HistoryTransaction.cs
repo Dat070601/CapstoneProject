@@ -10,7 +10,6 @@ namespace BookStore.Models.Entities
 
         }
 
-        public Guid BillId { get; set; }
         public Guid AccountId { get; set; }
         public double Money { get; set; }
         public DateTime TransactionDate { get; set; }

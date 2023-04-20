@@ -18,6 +18,21 @@ namespace BookStore.Service.Mapping
             this.autoMapper = autoMapper;
         }
 
+        public List<AuthorViewModel> MapAuthors(List<Author> authors)
+        {
+            var listAuthors = new List<AuthorViewModel>();
+            foreach (var item in authors)
+            {
+                var author = new AuthorViewModel
+                {
+                    AuthorId = item.Id,
+                    AuthorName = item.AuthorName,
+                };
+                listAuthors.Add(author);
+            }
+            return listAuthors;
+        }
+
         public BookDetailViewModel MapBookDetail(Book bookDetail)
         {
             var book = new BookDetailViewModel()

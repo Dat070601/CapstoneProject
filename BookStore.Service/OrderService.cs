@@ -170,7 +170,7 @@ namespace BookStore.Service
                 Country = orderRequest.Country,
                 PaymentId = orderRequest.PaymentId,
                 PhoneNumber = orderRequest.PhoneNumber,
-                StatusId = orderRequest.StatusId,
+                StatusId = new Guid("1BB6C8CF-F16E-4153-AB89-50534E3710A4"),
                 DateCreated = DateTime.Now,
                 Total = 0
             };
