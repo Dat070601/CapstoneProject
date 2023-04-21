@@ -8,7 +8,14 @@ namespace BookStore.Models.DataViewModel.Requests
 {
     public class BookRequest 
     {
-        public int Page { get; set; }
-        public int PageSize { get; set; }
+        public string? BookName { get; set; }
+        public string? BookDescription { get; set; }
+        public Guid CategoryId { get; set; }
+        public int Quantity { get; set; }
+        public int NumPage { get; set; }
+        public Guid PublisherId { get; set; }
+        public Guid AuthorId { get; set; }
+        public List<string>? ImageUrls { get; set; }
+        public BookPriceRequest? Price { get; set; }
     }
 }

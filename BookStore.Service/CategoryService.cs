@@ -1,5 +1,8 @@
 ﻿using BookStore.Models.DAL.Interfaces;
 using BookStore.Models.DataViewModel;
+using BookStore.Models.DataViewModel.Requests;
+using BookStore.Models.DataViewModel.Responses;
+using BookStore.Models.Entities;
 using BookStore.Service.Base;
 using BookStore.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +21,37 @@ namespace BookStore.Service
         {
             this.categoryRepository = categoryRepository;
             this.bookRepository = bookRepository;
+        }
+
+        public async Task<CategoryResponse> AddCategory(CategoryRequest cateReq)
+        {
+            var cate = new Category
+            {
+                SubId = cateReq.SubId,
+                CategoryName = cateReq.CategoryName
+            };
+            await categoryRepository.AddAsync(cate);
+            await unitOfWork.CommitTransaction();
+            return new CategoryResponse
+            {
+                IsSuccess = true,
+                Message = "Add category success !"
+            };
+        }
+
+        public async Task<CategoryResponse> AddSubCateogry(SubCategoryRequest cateReq)
+        {
+            var cate = new Category
+            {
+                CategoryName = cateReq.CategoryName,
+            };
+            await categoryRepository.AddAsync(cate);
+            await unitOfWork.CommitTransaction();
+            return new CategoryResponse
+            {
+                IsSuccess = true,
+                Message = "Add sub category success!"
+            };
         }
 
         public async Task<CategoryViewModel> GetBookByCategoryId(Guid cateId, int page, int pageSize)
@@ -68,6 +102,27 @@ namespace BookStore.Service
                 listCate.Add(category);
             }
             return listCate;
+        }
+
+        public async Task<CategoryResponse> UpdateNameCategory(SubCategoryRequest cateReq, Guid cateId)
+        {
+            var cate = await categoryRepository.GetQuery(ct => ct.Id == cateId).SingleAsync();
+            if (cate == null)
+            {
+                return new CategoryResponse
+                {
+                    IsSuccess = false,
+                    Message = "Can't find category"
+                };
+            }
+            cate.CategoryName = cateReq.CategoryName;
+            categoryRepository.Update(cate);
+            await unitOfWork.CommitTransaction();
+            return new CategoryResponse
+            {
+                IsSuccess = true,
+                Message = "Update category success!"
+            };
         }
 
         private async Task<List<CategoryViewModel>> getCategoryChild(Guid id)
