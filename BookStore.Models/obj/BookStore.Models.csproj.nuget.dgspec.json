@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj",
         "projectName": "BookStore.Models",
-        "projectPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\BookStore.Models.csproj",
-        "packagesPath": "C:\\Users\\dat.dinhhoang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dat.dinhhoang\\source\\repos\\BookStore\\BookStore.Models\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\BookStore.Models.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\CapstoneProject\\BookStore.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dat.dinhhoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

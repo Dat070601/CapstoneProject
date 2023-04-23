@@ -38,10 +38,8 @@ namespace BookStore.Service
         public async Task<string> CreatePayemntUrl(PaymentRequest paymentRequest, HttpContext context)
         {
             var findOrder = await orderRepository.GetQuery(or => or.Id == paymentRequest.OrderId).SingleAsync();
-            if (findOrder == null)
-            {
-                return "Order Not Found!";
-            }
+            if (findOrder == null) return "Order Not Found!";
+            if (findOrder.Status.NameStatus.Equals("Đã Thanh Toán")) return "Đơn hàng đã thanh toán!";
             var timeZoneById = TimeZoneInfo.FindSystemTimeZoneById(configuration["TimeZoneId"]!);
             var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneById);
             var tick = DateTime.Now.Ticks.ToString();

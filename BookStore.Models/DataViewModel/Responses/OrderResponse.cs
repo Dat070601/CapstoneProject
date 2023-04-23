@@ -9,5 +9,6 @@ namespace BookStore.Models.DataViewModel.Responses
 {
     public class OrderResponse : GeneralResponses
     {
+        public string? Link { get; set; }
     }
 }

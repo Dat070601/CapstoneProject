@@ -24,7 +24,7 @@ namespace BookStore.Controllers
             //var tokenString = handler.ReadToken(token) as JwtSecurityToken;
             //var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
             var res = await orderService.AddOrder(orderRequest, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return res.IsSuccess ? Ok(res.Message) : BadRequest(res.Message);
+            return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
         }
 
         [HttpGet("{orderId}")]

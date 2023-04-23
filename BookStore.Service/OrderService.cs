@@ -105,7 +105,8 @@ namespace BookStore.Service
                 return new OrderResponse
                 {
                     IsSuccess = true,
-                    Message = "Add Order Success!!"
+                    Message = "Add Order Success!!",
+                    Link = "https://localhost:7149/api/order/" + order.Id
                 };
             }
             catch (InvalidOperationException)
@@ -135,7 +136,7 @@ namespace BookStore.Service
                 CustomerId = order.AccountId,
                 Address = order.Address,
                 City = order.City,
-                Country = order.Country,
+                District = order.District,
                 MessageOrder = order.Message,
                 OrderDate = order.DateCreated,
                 PhoneNumber = order.PhoneNumber,
@@ -167,7 +168,7 @@ namespace BookStore.Service
                 AccountId = cusId,
                 Address = orderRequest.Address,
                 City = orderRequest.City,
-                Country = orderRequest.Country,
+                District = orderRequest.District,
                 PaymentId = orderRequest.PaymentId,
                 PhoneNumber = orderRequest.PhoneNumber,
                 StatusId = new Guid("1BB6C8CF-F16E-4153-AB89-50534E3710A4"),
