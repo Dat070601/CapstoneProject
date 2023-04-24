@@ -8,6 +8,7 @@ namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class AddressController : ControllerBase
     {
         private readonly IAddressService addressService;
@@ -16,7 +17,6 @@ namespace BookStore.Controllers
             this.addressService = addressService;
         }
 
-        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAddress([FromBody] AddressRequest addressRequest)
         {
@@ -27,7 +27,7 @@ namespace BookStore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAddress()
         {
-            var res = await addressService.GetAdderess(new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+            var res = await addressService.GetAddress(new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
             return Ok(res);
         }
 
@@ -36,6 +36,13 @@ namespace BookStore.Controllers
         {
             var res = await addressService.DeleteAddress(addressId, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
             return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+        }
+
+        [HttpPut("{addressId}")]
+        public async Task<IActionResult> UpdateAddressById([FromBody] AddressRequest addressRequest, Guid addressId)
+        {
+            var res = await addressService.UpdateAddress(addressRequest,addressId, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+            return res.IsSuccess ? Ok(res.Message) : BadRequest(res.Message);
         }
     }
 }

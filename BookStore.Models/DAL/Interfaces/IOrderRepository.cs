@@ -9,6 +9,6 @@ namespace BookStore.Models.DAL.Interfaces
 {
     public interface IOrderRepository : IRepository<Order>
     {
-
+        Task<List<Order>> GetOrderByDate(string dateTime);
     }
 }

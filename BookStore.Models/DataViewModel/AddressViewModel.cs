@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Models.DataViewModel
 {
-    public class AddressViewModel : GeneralResponses
+    public class AddressViewModel
     {
         public string? City { get; set; }
         public string? District { get; set; }

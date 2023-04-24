@@ -274,7 +274,7 @@ namespace BookStore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StreetAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -378,7 +378,7 @@ namespace BookStore.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Total = table.Column<double>(type: "float", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)

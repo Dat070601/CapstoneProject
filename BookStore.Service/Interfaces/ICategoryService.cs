@@ -15,6 +15,6 @@ namespace BookStore.Service.Interfaces
         Task<CategoryViewModel> GetBookByCategoryId(Guid cateId, int page, int pageSize);
         Task<CategoryResponse> AddCategory(CategoryRequest cateReq);
         Task<CategoryResponse> AddSubCateogry(SubCategoryRequest cateReq);
-        Task<CategoryResponse> UpdateNameCategory(SubCategoryRequest cateReq, Guid cateId);
+        Task<CategoryResponse> UpdateNameCategory(SubCategoryRequest cateReq, Guid cateId); 
     }
-}
+} 

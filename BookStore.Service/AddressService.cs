@@ -63,16 +63,43 @@ namespace BookStore.Service
             };
         }
 
-        public async Task<List<string>> GetAdderess(Guid accountId)
+        public async Task<List<AddressViewModel>> GetAddress(Guid accountId)
         {
             var listAddress = await addressRepository.GetQuery(ad => ad.AccountId == accountId).ToListAsync();
-            var addresses = new List<string>();
+            var addresses = new List<AddressViewModel>();
             foreach (var item in listAddress)
             {
-                var address = item.StreetAddress + ", quận " + item.District + ", thành phố " + item.City;
+                var address = new AddressViewModel
+                {
+                    StreetAddress = item.StreetAddress,
+                    District = item.District,
+                    City = item.City
+                };
                 addresses.Add(address);
             }
             return addresses;
+        }
+
+        public async Task<AddressResponse> UpdateAddress(AddressRequest addressReq, Guid addressId, Guid accountId)
+        {
+            var address = await addressRepository.GetQuery(ad => ad.Id == addressId && ad.AccountId == accountId).SingleAsync();
+            if (address == null)
+            {
+                return new AddressResponse
+                {
+                    IsSuccess = false,
+                    Message = "Can't find Address!"
+                };
+            }
+            address.StreetAddress = addressReq.StreetAddress;
+            address.City = addressReq.City;
+            address.District = addressReq.District;
+            addressRepository.Update(address);
+            return new AddressResponse
+            {
+                IsSuccess = true,
+                Message = "Update address success!"
+            };
         }
     }
 }

@@ -12,7 +12,8 @@ namespace BookStore.Service.Interfaces
     public interface IAddressService
     {
         Task<AddressResponse> AddAddress(AddressRequest addReq, Guid acountId);
-        Task<List<string>> GetAdderess(Guid accountId);
+        Task<List<AddressViewModel>> GetAddress(Guid accountId);
         Task<AddressResponse> DeleteAddress(Guid addressId, Guid accountId);
+        Task<AddressResponse> UpdateAddress(AddressRequest addressReq, Guid addressId, Guid accountId);
     }
 }
