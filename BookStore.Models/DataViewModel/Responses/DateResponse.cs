@@ -8,7 +8,7 @@ namespace BookStore.Models.DataViewModel.Responses
 {
     public class DateResponse
     {
-        public string? Date { get; set; }
-        public List<StatisBookResponse>? StatisBooks { get; set; }
+        public string? BookName { get; set; }
+        public int Data { get; set; }
     }
 }

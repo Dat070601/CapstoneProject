@@ -72,7 +72,8 @@ namespace BookStore.Extensions
                 .AddScoped<ISearcbService, SearchService>()
                 .AddScoped<IPaymentService, PaymentService>()
                 .AddScoped<IAuthorService, AuthorService>()
-                .AddScoped<IAddressService, AddressService>();
+                .AddScoped<IAddressService, AddressService>()
+                .AddScoped<IStatisticalService, StatisticalService>();
         }
     }
 }

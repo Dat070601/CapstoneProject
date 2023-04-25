@@ -10,5 +10,6 @@ namespace BookStore.Service.Interfaces
     public interface IStatisticalService
     {
         Task<StatisResponse> NumberOfBooksSold(string type);
+        Task<StatisResponse> NumberOfBookSoldInMonth(int month, Guid accountId);
     }
 }

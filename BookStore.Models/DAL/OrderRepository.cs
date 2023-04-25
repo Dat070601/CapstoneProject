@@ -10,17 +10,16 @@ namespace BookStore.Models.DAL
         {
         }
 
-        public async Task<List<Order>> GetOrderByDate(string dateTime)
+        public async Task<List<Order>> GetOrderByDate(DateTime dateTime)
         {
-            if (dateTime.Length == 10)
-            {
-                return await GetQuery(or => or.DateCreated.ToString().Substring(0, 10).Equals(dateTime) && or.Status.NameStatus.Equals("Đã Giao")).ToListAsync();
-            }
-            if (dateTime.Length == 13)
-            {
-                return await GetQuery(or => or.DateCreated.ToString().Substring(0, 13).Equals(dateTime) && or.Status.NameStatus.Equals("Đã Giao")).ToListAsync();
-            }
-            return null!;
+            var listOrder = await GetQuery(or => or.DateCreated.Date == dateTime.Date && or.StatusId.ToString().Equals("10C70526-DEB7-44C2-A0F8-74C7A5CD4092")).ToListAsync();
+            return listOrder;
+        }
+
+        public async Task<List<Order>> GetOrderInMonth(int month)
+        {
+            var listOrder = await GetQuery(or => or.DateCreated.Month == month && or.StatusId.ToString().Equals("10C70526-DEB7-44C2-A0F8-74C7A5CD4092")).ToListAsync();
+            return listOrder;
         }
     }
 }
