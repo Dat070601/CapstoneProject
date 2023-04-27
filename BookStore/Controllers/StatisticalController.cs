@@ -15,10 +15,10 @@ namespace BookStore.Controllers
             this.statisticalService = statisticalService;    
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetStatistical(string type)
+        [HttpGet("statistical-number-of-book-sold")]
+        public async Task<IActionResult> GetStatistical(int countDate)
         {
-            var res = await statisticalService.NumberOfBooksSold(type);
+            var res = await statisticalService.NumberOfBooksSold(countDate);
             return Ok(res);
         }
 

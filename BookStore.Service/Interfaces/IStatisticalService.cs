@@ -9,7 +9,7 @@ namespace BookStore.Service.Interfaces
 {
     public interface IStatisticalService
     {
-        Task<StatisResponse> NumberOfBooksSold(string type);
+        Task<StatisResponse> NumberOfBooksSold(int countDate);
         Task<StatisResponse> NumberOfBookSoldInMonth(int month, Guid accountId);
     }
 }

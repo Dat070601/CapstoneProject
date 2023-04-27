@@ -65,23 +65,10 @@ namespace BookStore.Service
             return labels1;
         }
           
-        public async Task<StatisResponse> NumberOfBooksSold(string type)
+        public async Task<StatisResponse> NumberOfBooksSold(int countDate)
         {
-            switch (type)
-            {
-                case "7Days":
-                {
-                    var dateTime = DateTime.Now;
-                    return await numberBookSold(7, "Năm sản phẩm bán được nhiều nhất trong 7 ngày", "", "", dateTime);
-                }
-                //case " ":
-                //{
-
-                //}
-                default:
-                    break;
-            }
-            return null;
+            var dateTime = DateTime.Now;
+            return await numberBookSold(countDate, "Năm sản phẩm bán chạy nhất trong " + dateTime.ToString() + " ngày", "", "", dateTime);
         }
 
         public async Task<StatisResponse> NumberOfBookSoldInMonth(int month, Guid accountId)
