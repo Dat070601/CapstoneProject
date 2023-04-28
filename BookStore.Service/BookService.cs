@@ -144,5 +144,17 @@ namespace BookStore.Service
             }
             throw new NotImplementedException();
         }
+
+        public async Task<List<BookViewModel>> GetBookTopNew()
+        {
+            var req = await bookRepository.GetTopNewBook();
+            return mapperCustom.MapBookPagging(req);
+        }
+
+        public async Task<List<BookViewModel>> GetBookBestSeller()
+        {
+            var req = await bookRepository.GetBestSeller();
+            return mapperCustom.MapBookPagging(req);
+        }
     }
 }

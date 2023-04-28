@@ -23,6 +23,15 @@ namespace BookStore.Models.DAL
             return req;
         }
 
+        public async Task<List<Book>> GetTopNewBook()
+        {
+            return await GetAllPaging().OrderByDescending(or => or.DateCreated).Take(5).ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBestSeller()
+        {
+            return await GetAllPaging().OrderByDescending(or => or.Sold).Take(5).ToListAsync();
+        }
         public async Task<List<Book>> SearchBookWithFuzzy(string nameBook)
         {
             var books = await GetAll();

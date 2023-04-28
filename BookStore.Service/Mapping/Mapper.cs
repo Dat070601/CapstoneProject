@@ -70,6 +70,7 @@ namespace BookStore.Service.Mapping
                         ImageUrl = MapImages(item.Images.ToList())[0].ImageUrl,
                         DefaultPrice = item.BookPrice.BookDefaultPrice,
                         SalePrice = item.BookPrice.BookSalePrice,
+                        Quantity = item.Quantity,
                         Price = item.BookPrice.BookDefaultPrice,
                         Title = item.BookName,
                         Sold = item.Sold
@@ -85,6 +86,7 @@ namespace BookStore.Service.Mapping
                         ImageUrl = MapImages(item.Images.ToList())[0].ImageUrl,
                         DefaultPrice = item.BookPrice.BookDefaultPrice,
                         SalePrice = item.BookPrice.BookDefaultPrice,
+                        Quantity = item.Quantity,
                         Price = item.BookPrice.BookSalePrice,
                         Title = item.BookName,
                         Sold = item.Sold

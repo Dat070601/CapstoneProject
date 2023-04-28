@@ -2,6 +2,7 @@
 using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,6 +48,18 @@ namespace BookStore.Controllers
             return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
         }
 
-        
+        [HttpGet("product-top-new")]
+        public async Task<IActionResult> GetProductTopNew()
+        {
+            var res = await bookService.GetBookTopNew();
+            return Ok(res);
+        }
+
+        [HttpGet("product-most-seller")]
+        public async Task<IActionResult> GetProductMostSeller()
+        {
+            var res = await bookService.GetBookBestSeller();
+            return Ok(res);
+        }
     }
 }
