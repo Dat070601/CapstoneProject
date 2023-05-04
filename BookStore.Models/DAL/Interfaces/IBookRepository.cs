@@ -13,5 +13,6 @@ namespace BookStore.Models.DAL.Interfaces
         Task<List<Book>> GetTopNewBook();
         Task<List<Book>> GetBestSeller();
         Task<List<Book>> SearchBookWithFuzzy(string nameBook);
+        Task<decimal> NumberOfPages();
     }
 }

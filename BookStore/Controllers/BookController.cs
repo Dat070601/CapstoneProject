@@ -19,7 +19,7 @@ namespace BookStore.Controllers
         }
         // GET: api/<BookController>
         [HttpGet]
-        public async Task<IActionResult> ViewBook(int page, int pageSize = 10)
+        public async Task<IActionResult> ViewBook(int page, int pageSize = 20)
         {
             var res = await bookService.GetBooksPaging(page, pageSize);
             return Ok(res);
@@ -60,6 +60,12 @@ namespace BookStore.Controllers
         {
             var res = await bookService.GetBookBestSeller();
             return Ok(res);
+        }
+
+        [HttpGet("number-page")]
+        public async Task<IActionResult> NumbarOfPage()
+        {
+            return Ok(await bookService.NumberOfPages());
         }
     }
 }

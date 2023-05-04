@@ -2,12 +2,6 @@
 using BookStore.Models.Entities;
 using FuzzySharp;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Models.DAL
 {
@@ -45,6 +39,13 @@ namespace BookStore.Models.DAL
                 };
             }
             return listBooks;
+        }
+
+        public async Task<decimal> NumberOfPages()
+        {
+            var page = await GetAll();
+            var numPage = (decimal)page.Count / 20;
+            return Math.Ceiling(numPage);
         }
     }
 }

@@ -13,5 +13,6 @@ namespace BookStore.Service.Interfaces
         Task<BookResponse> AddBook(BookRequest bookReq);
         Task<BookResponse> StopProductionBook(Guid bookId);
         Task<BookResponse> UpdateBook(Guid id,BookRequest bookReq);
+        Task<decimal> NumberOfPages();
     }
 }

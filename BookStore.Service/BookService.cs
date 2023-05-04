@@ -156,5 +156,10 @@ namespace BookStore.Service
             var req = await bookRepository.GetBestSeller();
             return mapperCustom.MapBookPagging(req);
         }
+
+        public async Task<decimal> NumberOfPages()
+        {
+            return await bookRepository.NumberOfPages();
+        }
     }
 }
