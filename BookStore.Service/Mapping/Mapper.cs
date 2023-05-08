@@ -104,7 +104,19 @@ namespace BookStore.Service.Mapping
 
         public List<ReviewViewModel> MapReview(List<Review> reviews)
         {
-            return autoMapper.Map<List<Review>, List<ReviewViewModel>>(reviews);
+            var listReview = new List<ReviewViewModel>();
+            foreach (var item in reviews)
+            {
+                var review = new ReviewViewModel
+                {
+                    AccountId = item.AccountId,
+                    ReviewId = item.Id,
+                    Name = item.Account.Name,
+                    ReviewText = item.ReviewText
+                };
+                listReview.Add(review);
+            }
+            return listReview;
         }
     }
 }

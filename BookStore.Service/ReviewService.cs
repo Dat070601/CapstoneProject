@@ -28,6 +28,7 @@ namespace BookStore.Service
                 ReviewText = reviewReq.ReviewText,
             };
             await reviewRepository.AddAsync(review);
+            await unitOfWork.CommitTransaction();
             return new ReviewResponse
             {
                 IsSuccess = true,
