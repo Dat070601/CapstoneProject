@@ -67,5 +67,11 @@ namespace BookStore.Controllers
         {
             return Ok(await bookService.NumberOfPages());
         }
+
+        [HttpGet("book-same-cate/{bookId}")]
+        public async Task<IActionResult> BookSameCate(Guid bookId)
+        {
+            return Ok(await bookService.GetFourBook(bookId));
+        }
     }
 }

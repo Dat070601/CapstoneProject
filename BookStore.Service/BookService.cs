@@ -161,5 +161,11 @@ namespace BookStore.Service
         {
             return await bookRepository.NumberOfPages();
         }
+
+        public async Task<List<BookViewModel>> GetFourBook(Guid bookId)
+        {
+            var req = await bookRepository.GetFourBook(bookId);
+            return mapperCustom.MapBookPagging(req);
+        }
     }
 }

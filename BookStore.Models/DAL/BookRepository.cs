@@ -47,5 +47,11 @@ namespace BookStore.Models.DAL
             var numPage = (decimal)page.Count / 20;
             return Math.Ceiling(numPage);
         }
+
+        public async Task<List<Book>> GetFourBook(Guid bookId)
+        {
+            var book = await GetQuery(b => b.Id == bookId).SingleAsync();
+            return await GetQuery(c => c.CategoryId == book.CategoryId && c.Id != bookId).Take(4).ToListAsync();
+        }
     }
 }
