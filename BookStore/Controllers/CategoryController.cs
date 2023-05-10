@@ -26,9 +26,9 @@ namespace BookStore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBookByCategory(Guid cateId, int page, int pageSize = 10)
+        public async Task<IActionResult> GetBookByCategory(Guid cateId)
         {
-            var res = await categoryService.GetBookByCategoryId(cateId, page, pageSize);
+            var res = await categoryService.GetBookByCategoryId(cateId);
             return Ok(res);
         }
 

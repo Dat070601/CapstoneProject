@@ -54,12 +54,12 @@ namespace BookStore.Service
             };
         }
 
-        public async Task<CategoryViewModel> GetBookByCategoryId(Guid cateId, int page, int pageSize)
+        public async Task<CategoryViewModel> GetBookByCategoryId(Guid cateId)
         {
             var findCategory = await categoryRepository.GetCategory(cateId);
             if (findCategory.SubId != null)
             {
-                var findBook = await bookRepository.GetAllPaging().Where(b => b.CategoryId == cateId).OrderBy(b => b.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+                var findBook = await bookRepository.GetAllPaging().Where(b => b.CategoryId == cateId).ToListAsync();
                 var mapBook = mapperCustom.MapBookPagging(findBook);
                 var result = new CategoryViewModel
                 {
@@ -73,7 +73,7 @@ namespace BookStore.Service
             var listBook = new List<BookViewModel>();
             foreach (var item in findCateChild)
             {
-                var findBook = await bookRepository.GetAllPaging().Where(b => b.CategoryId == item.Id).OrderBy(b => b.Id).Skip((page - 1) * pageSize/(findCateChild.Count)).Take(pageSize/(findCateChild.Count)).ToListAsync();
+                var findBook = await bookRepository.GetAllPaging().Where(b => b.CategoryId == item.Id).ToListAsync();
                 var mapBook = mapperCustom.MapBookPagging(findBook);
                 listBook.AddRange(mapBook);
             }

@@ -12,7 +12,7 @@ namespace BookStore.Service.Interfaces
     public interface ICategoryService 
     {
         Task<List<CategoryViewModel>> GetSubCategory();
-        Task<CategoryViewModel> GetBookByCategoryId(Guid cateId, int page, int pageSize);
+        Task<CategoryViewModel> GetBookByCategoryId(Guid cateId);
         Task<CategoryResponse> AddCategory(CategoryRequest cateReq);
         Task<CategoryResponse> AddSubCateogry(SubCategoryRequest cateReq);
         Task<CategoryResponse> UpdateNameCategory(SubCategoryRequest cateReq, Guid cateId); 
