@@ -164,6 +164,7 @@ namespace BookStore.Service
                 District = orderRequest.District,
                 PaymentId = orderRequest.PaymentId,
                 PhoneNumber = orderRequest.PhoneNumber,
+                Message = orderRequest.Message,
                 StatusId = new Guid("1BB6C8CF-F16E-4153-AB89-50534E3710A4"),
                 DateCreated = DateTime.Now,
                 Total = 0

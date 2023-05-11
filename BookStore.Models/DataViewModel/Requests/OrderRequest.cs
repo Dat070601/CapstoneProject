@@ -13,6 +13,7 @@ namespace BookStore.Models.DataViewModel.Requests
         public string? Address{ get; set; }
         public string? City { get; set; }
         public string? District { get; set; }
+        public string? Message { get; set; }
         public List<OrderDetailRequest>? OrderDetails { get; set; }
     }
 }
