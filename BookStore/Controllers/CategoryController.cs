@@ -25,10 +25,10 @@ namespace BookStore.Controllers
             return Ok(res);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetBookByCategory(Guid cateId)
+        [HttpGet("{categoryId}")]
+        public async Task<IActionResult> GetBookByCategory(Guid categoryId)
         {
-            var res = await categoryService.GetBookByCategoryId(cateId);
+            var res = await categoryService.GetBookByCategoryId(categoryId);
             return Ok(res);
         }
 

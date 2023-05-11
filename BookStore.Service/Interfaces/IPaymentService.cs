@@ -11,7 +11,7 @@ namespace BookStore.Service.Interfaces
 {
     public interface IPaymentService
     {
-        Task<string> CreatePayemntUrl(PaymentRequest paymentRequest, HttpContext context);
-        Task<PaymentResponse> PaymentExecute(IQueryCollection collections, Guid accountId);
+        Task<PaymentLinkResponse> CreatePayemntUrl(PaymentRequest paymentRequest, HttpContext context);
+        Task<PaymentResponse> PaymentExecute(IQueryCollection collections);
     }
 }

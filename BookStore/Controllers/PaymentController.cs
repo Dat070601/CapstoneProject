@@ -2,6 +2,7 @@
 using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore.Controllers
 {
@@ -18,15 +19,15 @@ namespace BookStore.Controllers
         [HttpPost("create-payment")]
         public async Task<IActionResult> CreatePaymentUrl([FromBody] PaymentRequest paymentRequest)
         {
-            var url = await paymentService.CreatePayemntUrl(paymentRequest,HttpContext);
-            return Ok(url);
+            var res = await paymentService.CreatePayemntUrl(paymentRequest,HttpContext);
+            return Ok(res);
         }
 
         [HttpGet("callback-payment")]
         public async Task<IActionResult> CallBackPayment()
         {
-            var call = await paymentService.PaymentExecute(Request.Query, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return call.IsSuccess ? Ok(call) : BadRequest(call.Message);
+            var call = await paymentService.PaymentExecute(Request.Query);
+            return call.IsSuccess ? Redirect("http://127.0.0.1:5173/payment-success") : BadRequest(call.Message);
         }
     }
 }

@@ -35,11 +35,11 @@ namespace BookStore.Service
             this.historyTransactionsRepository = repositoryTransactionsRepository;
         }
 
-        public async Task<string> CreatePayemntUrl(PaymentRequest paymentRequest, HttpContext context)
+        public async Task<PaymentLinkResponse> CreatePayemntUrl(PaymentRequest paymentRequest, HttpContext context)
         {
             var findOrder = await orderRepository.GetQuery(or => or.Id == paymentRequest.OrderId).SingleAsync();
-            if (findOrder == null) return "Order Not Found!";
-            if (findOrder.Status.NameStatus.Equals("Đã Thanh Toán")) return "Đơn hàng đã thanh toán!";
+            if (findOrder == null) return new PaymentLinkResponse { Message = "Không tìm thấy đơn hàng" };
+            if (findOrder.Status.NameStatus.Equals("Đã Thanh Toán")) return new PaymentLinkResponse { Message = "Đơn hàng đã thanh toán" };
             var timeZoneById = TimeZoneInfo.FindSystemTimeZoneById(configuration["TimeZoneId"]!);
             var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneById);
             var tick = DateTime.Now.Ticks.ToString();
@@ -62,10 +62,14 @@ namespace BookStore.Service
             var paymentUrl =
                 pay.CreateRequestUrl(configuration["Vnpay:BaseUrl"]!, configuration["Vnpay:HashSecret"]!);
 
-            return paymentUrl;
+            return new PaymentLinkResponse
+            {
+                RedirectUrl = paymentUrl,
+                IsSuccess = true,
+            };
         }
 
-        public async Task<PaymentResponse> PaymentExecute(IQueryCollection collections, Guid accountId)
+        public async Task<PaymentResponse> PaymentExecute(IQueryCollection collections)
         {
             var pay = new VnPayLibrary();
             var response = pay.GetFullResponseData(collections, configuration["Vnpay:HashSecret"]!);
@@ -79,7 +83,7 @@ namespace BookStore.Service
             orderRepository.Update(findOrder);
             var history = new HistoryTransaction
             {
-                AccountId = accountId,
+                AccountId = findOrder.AccountId,
                 StatusId = changeStatus.Id,
                 TransactionDate = DateTime.Now,
                 Money = Double.Parse(response.Amount!) / 100

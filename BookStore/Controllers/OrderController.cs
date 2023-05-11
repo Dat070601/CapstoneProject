@@ -2,6 +2,7 @@
 using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore.Controllers
 {
@@ -18,13 +19,24 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrder([FromBody] OrderRequest orderRequest)
         {
-            //if (!ModelState.IsValid) return BadRequest(ModelState);
-            //var handler = new JwtSecurityTokenHandler();
-            //var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
-            //var tokenString = handler.ReadToken(token) as JwtSecurityToken;
-            //var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
-            var res = await orderService.AddOrder(orderRequest, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await orderService.AddOrder(orderRequest, userId);
+                return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{orderId}")]
@@ -39,6 +51,29 @@ namespace BookStore.Controllers
         {
             var res = await orderService.ChangeStatus(status, orderId);
             return Ok(res);
+        }
+
+        [HttpGet("order-from-customer")]
+        public async Task<IActionResult> GetOrderByCus()
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await orderService.GetOrderByCusId(userId);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

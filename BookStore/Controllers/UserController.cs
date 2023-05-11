@@ -5,6 +5,7 @@ using BookStore.Service;
 using BookStore.Service.Interfaces;
 using BookStore.Service.TokenGenerators;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -123,6 +124,29 @@ namespace BookStore.Controllers
                 return Redirect("https://localhost:7149/api/user/reset-password?code=" + code);
             }
             return BadRequest("Không tìm thấy tài khoản tương ứng !");
+        }
+
+        [HttpGet("get-customer")]
+        public async Task<IActionResult> GetCustomer()
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var cusProfile = await userService.GetUserProfile(userId);
+                return Ok(cusProfile);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

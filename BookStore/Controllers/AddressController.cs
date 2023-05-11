@@ -20,8 +20,16 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAddress([FromBody] AddressRequest addressRequest)
         {
-            var res = await addressService.AddAddress(addressRequest, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return Ok(res);
+            try
+            {
+                var res = await addressService.AddAddress(addressRequest, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
+                return Ok(res);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]

@@ -6,13 +6,6 @@ using BookStore.Models.Entities;
 using BookStore.Service.Base;
 using BookStore.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Service
 {
@@ -227,6 +220,50 @@ namespace BookStore.Service
                 var findCart = await cartRepository.GetQuery(o => o.AccountId == order.AccountId).SingleAsync();
                 var findCartDetail = await cartDetailRepository.GetCartDetailByCartIdAndBookId(findCart.Id, item.BookId);
                 if (findCartDetail != null) cartDetailRepository.Delete(findCartDetail);
+            }
+        }
+
+        public async Task<OrderViewModel> GetOrderByCusId(Guid cusId)
+        {
+            try
+            {
+                var order = await orderRepository.GetQuery(or => or.AccountId == cusId && or.StatusId == new Guid("1BB6C8CF-F16E-4153-AB89-50534E3710A4")).SingleAsync();
+                var orderView = new OrderViewModel
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.AccountId,
+                    Address = order.Address,
+                    City = order.City,
+                    District = order.District,
+                    MessageOrder = order.Message,
+                    OrderDate = order.DateCreated,
+                    PhoneNumber = order.PhoneNumber,
+                    OrderStatus = order.Status.NameStatus,
+                    PaymentMethod = order.Payment.Type,
+                    TotalPrice = order.Total,
+                };
+                var orderDetail = await orderDetailRepository.GetQuery(ord => ord.OrderId == order.Id).ToListAsync();
+                var listOrderDetail = new List<OrderDetailViewModel>();
+                foreach (var item in orderDetail)
+                {
+                    var ord = new OrderDetailViewModel
+                    {
+                        BookId = item.BookId,
+                        BookName = item.Book.BookName,
+                        Price = item.Price,
+                        Quantity = item.Quantity
+                    };
+                    listOrderDetail.Add(ord);
+                }
+                orderView.OrderDetails = listOrderDetail;
+                return orderView;
+            }
+            catch (Exception)
+            {
+                return new OrderViewModel
+                {
+                    Message = "Không tìm thấy"
+                };
             }
         }
     }

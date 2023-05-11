@@ -1,4 +1,5 @@
 ﻿using BookStore.Models.DataViewModel.Requests;
+using BookStore.Models.DataViewModel.Responses;
 using BookStore.Models.DTOs.Requests;
 using BookStore.Models.DTOs.Responses;
 
@@ -12,5 +13,6 @@ namespace BookStore.Service.Interfaces
         Task<UserResponse> ForgotPassword(string userEmail);
         Task<bool> GetUserByResetCode(Guid resetPassCode);
         Task<UserResponse> ResetPassword(ResetPasswordRequest req);
+        Task<UserProfileResponse> GetUserProfile(Guid userId);
     }
 }

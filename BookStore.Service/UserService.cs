@@ -1,6 +1,7 @@
 ﻿using BookStore.Models.DAL;
 using BookStore.Models.DAL.Interfaces;
 using BookStore.Models.DataViewModel.Requests;
+using BookStore.Models.DataViewModel.Responses;
 using BookStore.Models.DTOs.Requests;
 using BookStore.Models.DTOs.Responses;
 using BookStore.Models.Entities;
@@ -86,6 +87,26 @@ namespace BookStore.Service
         public async Task<bool> GetUserByResetCode(Guid resetPassCode)
         {
             return await userRepository.FindAsync(us => us.ResetPasswordCode == resetPassCode) != null;
+        }
+
+        public async Task<UserProfileResponse> GetUserProfile(Guid userId)
+        {
+            var user = await userRepository.FindAsync(us => us.Id ==  userId);
+            if (user == null)
+            {
+                return new UserProfileResponse
+                {
+                    IsSuccess = false,
+                    Message = "Không tìm thấy người dùng"
+                };
+            }
+            var userProfile = new UserProfileResponse
+            {
+                IsSuccess = true,
+                CustomerFullName = user.Name,
+                CustomerId = user.Id
+            };
+            return userProfile;
         }
 
         public async Task<UserResponse> Login(LoginRequest req)
