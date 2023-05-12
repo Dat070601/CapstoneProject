@@ -27,7 +27,7 @@ namespace BookStore.Controllers
         public async Task<IActionResult> CallBackPayment()
         {
             var call = await paymentService.PaymentExecute(Request.Query);
-            return call.IsSuccess ? Redirect("http://127.0.0.1:5173/payment-success") : BadRequest(call.Message);
+            return call.IsSuccess ? Redirect("http://localhost:5173/payment-success") : BadRequest(call.Message);
         }
     }
 }

@@ -5,6 +5,7 @@ using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore.Controllers
 {
@@ -37,24 +38,72 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategory([FromBody] CategoryRequest cateReq)
         {
-            var res = await categoryService.AddCategory(cateReq);
-            return Ok(res);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await categoryService.AddCategory(cateReq);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         //[Authorize]
         [HttpPost("subCate")]
         public async Task<IActionResult> AddSubCate([FromBody] SubCategoryRequest cateReq)
         {
-            var res = await categoryService.AddSubCateogry(cateReq);
-            return Ok(res);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await categoryService.AddSubCateogry(cateReq);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         //[Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateCategory([FromBody] SubCategoryRequest cateReq, Guid idCate)
         {
-            var res = await categoryService.UpdateNameCategory(cateReq, idCate);
-            return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await categoryService.UpdateNameCategory(cateReq, idCate);
+                return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

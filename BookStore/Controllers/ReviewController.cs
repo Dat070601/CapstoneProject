@@ -2,6 +2,7 @@
 using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore.Controllers
 {
@@ -18,22 +19,70 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddReview([FromBody] ReviewRequest reviewReq)
         {
-            var res = await reviewService.AddReview(reviewReq, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return Ok(res);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await reviewService.AddReview(reviewReq, userId);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewRequest reviewReq)
         {
-            var res = await reviewService.UpdateReview(reviewReq, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return Ok(res);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await reviewService.UpdateReview(reviewReq, userId);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteReview([FromBody] DeleteReviewRequest reviewReq)
         {
-            var res = await reviewService.DeleteReview(reviewReq, new Guid("8F330FA6-0551-440C-A02F-2AE608BD97CE"));
-            return Ok(res);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await reviewService.DeleteReview(reviewReq, userId);
+                return Ok(res);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

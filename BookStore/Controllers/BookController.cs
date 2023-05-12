@@ -3,6 +3,7 @@ using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,8 +37,24 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBook([FromBody] BookRequest bookRequest)
         {
-            var res = await bookService.AddBook(bookRequest);
-            return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await bookService.AddBook(bookRequest);
+                return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         //[Authorize]
