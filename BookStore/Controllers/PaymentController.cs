@@ -27,7 +27,7 @@ namespace BookStore.Controllers
         public async Task<IActionResult> CallBackPayment()
         {
             var call = await paymentService.PaymentExecute(Request.Query);
-            return call.IsSuccess ? Redirect("http://localhost:5173/payment-success") : BadRequest(call.Message);
+            return call.IsSuccess ? Redirect("https://cap-stone-project-q75eujm3g-dat070601.vercel.app/#/payment-success") : BadRequest(call.Message);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStore.Migrations
 {
-    public partial class init1 : Migration
+    public partial class dat : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
