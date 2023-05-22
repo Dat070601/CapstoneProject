@@ -23,9 +23,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BookStore.Models\BookStore.Models.csproj" />
-    <ProjectReference Include="..\BookStore.Service\BookStore.Service.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\BookStore.Models\BookStore.Models.csproj" />
+		<ProjectReference Include="..\BookStore.Service\BookStore.Service.csproj" />
+	</ItemGroup>
+	
 </Project>
