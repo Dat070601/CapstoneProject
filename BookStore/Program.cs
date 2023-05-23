@@ -15,11 +15,7 @@ defaultConnectionString = builder.Configuration.GetConnectionString("DockerConne
 builder.Services.AddDbContext<BookStoreContext>(
     options =>
     {
-        options.UseSqlServer(defaultConnectionString, b =>
-        {
-            b.MigrationsAssembly("BookStore");
-            b.EnableRetryOnFailure();
-        });
+        options.UseSqlServer(defaultConnectionString, b => b.MigrationsAssembly("BookStore"));
         options.UseLazyLoadingProxies();
     }
 );
