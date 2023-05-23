@@ -11,11 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOptions();
 
 var defaultConnectionString = string.Empty;
-defaultConnectionString = builder.Configuration.GetConnectionString("LocalConnection");
+defaultConnectionString = builder.Configuration.GetConnectionString("DockerConnection");
 builder.Services.AddDbContext<BookStoreContext>(
     options =>
     {
-        options.UseSqlServer(defaultConnectionString, b => b.MigrationsAssembly("BookStore"));
+        options.UseSqlServer(defaultConnectionString, b =>
+        {
+            b.MigrationsAssembly("BookStore");
+            b.EnableRetryOnFailure();
+        });
         options.UseLazyLoadingProxies();
     }
 );
