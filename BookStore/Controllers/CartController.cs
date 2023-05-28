@@ -1,6 +1,7 @@
 ﻿using BookStore.Models.DataViewModel.Requests;
 using BookStore.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Crmf;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore.Controllers
@@ -51,6 +52,29 @@ namespace BookStore.Controllers
                 return Ok(res);
             }
             catch(IndexOutOfRangeException)
+            {
+                return BadRequest("Phiên đăng nhập đã hết hạng!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("quantity-book")]
+        public async Task<IActionResult> ReduceBookInCart([FromBody] CartRequest cartReq)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var handler = new JwtSecurityTokenHandler();
+                var token = Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var tokenString = handler.ReadToken(token) as JwtSecurityToken;
+                var userId = new Guid(tokenString!.Claims.First(token => token.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var res = await cartService.DeleteProductCart(cartReq, userId);
+                return res.IsSuccess ? Ok(res) : BadRequest(res.Message);
+            }
+            catch (IndexOutOfRangeException)
             {
                 return BadRequest("Phiên đăng nhập đã hết hạng!");
             }

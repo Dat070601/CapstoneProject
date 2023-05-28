@@ -14,5 +14,6 @@ namespace BookStore.Service.Interfaces
         Task<CartResponse> GetCart(Guid Id);
         Task<CartResponse> DeleteCart(List<CartOptionRequest> cartReq, Guid cusId);
         Task<CartResponse> UpdateCart(CartRequest cartReq, Guid cusId);
+        Task<CartResponse> DeleteProductCart(CartRequest req, Guid id);
     }
 }

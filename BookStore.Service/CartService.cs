@@ -110,6 +110,55 @@ namespace BookStore.Service
             }
         }
 
+        public async Task<CartResponse> DeleteProductCart(CartRequest req, Guid id)
+        {
+            try
+            {
+                if (!checkQuantities(req).Result.IsSuccess)
+                {
+                    return checkQuantities(req).Result;
+                }
+                var findCart = await cartRepository.GetCartByCustomerId(id);
+                var listCartDetail = await cartDetailRepository.GetListCartDetailByCartId(findCart.Id);
+                foreach (var item in listCartDetail)
+                {
+                    if(item.BookId == req.BookId)
+                    {
+                        item.Quantity -= req.Quantity;
+                        await unitOfWork.CommitTransaction();
+                        return new CartResponse
+                        {
+                            IsSuccess = true,
+                            Message = "Delete product success!"
+                        };
+                    }
+                }
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "System error, Delete product from cart was fasle and please try again later! "
+                };
+            }
+            catch (InvalidOperationException e)
+            {
+                logger.LogError($"{e.Message}. Detail {e.StackTrace}");
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "Some properties is valid !",
+                };
+            }
+            catch (Exception e)
+            {
+                logger.LogError($"{e.Message}. Detail {e.StackTrace}");
+                return new CartResponse
+                {
+                    IsSuccess = false,
+                    Message = "System error, Delete product from cart was fasle and please try again later!! "
+                };
+            }
+        }
+
         public async Task<CartResponse> AddCart(CartRequest req, Guid Id)
         {
             try
@@ -182,7 +231,8 @@ namespace BookStore.Service
                         BookName = item.Book.BookName,
                         ImageUrl = mapperCustom.MapImages(item.Book.Images.ToList())[0].ImageUrl,
                         Price = item.Book.BookPrice.BookSalePrice,
-                        Quantity = item.Quantity
+                        Quantity = item.Quantity,
+                        TotalPrice = item.Book.BookPrice.BookSalePrice * item.Quantity
                     };
                     result.cartDetailViewModels!.Add(cartDetail);
                 }
@@ -194,7 +244,8 @@ namespace BookStore.Service
                         BookName = item.Book.BookName,
                         ImageUrl = mapperCustom.MapImages(item.Book.Images.ToList())[0].ImageUrl,
                         Price = item.Book.BookPrice.BookDefaultPrice,
-                        Quantity = item.Quantity
+                        Quantity = item.Quantity,
+                        TotalPrice = item.Book.BookPrice.BookDefaultPrice * item.Quantity
                     };
                     result.cartDetailViewModels!.Add(cart);
                 }

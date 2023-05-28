@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOptions();
 
 var defaultConnectionString = string.Empty;
-defaultConnectionString = builder.Configuration.GetConnectionString("DockerConnection");
+defaultConnectionString = builder.Configuration.GetConnectionString("LocalConnection");
 builder.Services.AddDbContext<BookStoreContext>(
     options =>
     {
