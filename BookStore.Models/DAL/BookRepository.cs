@@ -48,6 +48,12 @@ namespace BookStore.Models.DAL
             return Math.Ceiling(numPage);
         }
 
+        public async Task<int> BookCount()
+        {
+            var books = await GetAll();
+            return books.Count;
+        }
+
         public async Task<List<Book>> GetFourBook(Guid bookId)
         {
             var book = await GetQuery(b => b.Id == bookId).SingleAsync();

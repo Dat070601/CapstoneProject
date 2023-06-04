@@ -72,6 +72,7 @@ namespace BookStore.Service.Mapping
                         SalePrice = item.BookPrice.BookSalePrice,
                         Quantity = item.Quantity,
                         Price = item.BookPrice.BookDefaultPrice,
+                        NameCategory = item.Category.CategoryName,
                         Title = item.BookName,
                         Sold = item.Sold
                     };
@@ -88,6 +89,7 @@ namespace BookStore.Service.Mapping
                         SalePrice = item.BookPrice.BookDefaultPrice,
                         Quantity = item.Quantity,
                         Price = item.BookPrice.BookSalePrice,
+                        NameCategory = item.Category.CategoryName,
                         Title = item.BookName,
                         Sold = item.Sold
                     };

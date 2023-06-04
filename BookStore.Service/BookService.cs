@@ -167,5 +167,10 @@ namespace BookStore.Service
             var req = await bookRepository.GetFourBook(bookId);
             return mapperCustom.MapBookPagging(req);
         }
+
+        public async Task<int> GetCountBook()
+        {
+            return await bookRepository.BookCount();
+        }
     }
 }

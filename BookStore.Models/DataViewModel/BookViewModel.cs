@@ -13,6 +13,7 @@ namespace BookStore.Models.DataViewModel
         public string? Title { get; set; }
         public double DefaultPrice { get; set; }
         public double SalePrice { get; set; }
+        public string? NameCategory { get; set; }
         public double Price { get; set; }
         public string? Description { get; set; }
         public int Quantity { get; set; }

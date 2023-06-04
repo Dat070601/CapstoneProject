@@ -90,5 +90,11 @@ namespace BookStore.Controllers
         {
             return Ok(await bookService.GetFourBook(bookId));
         }
+
+        [HttpGet("book-count")]
+        public async Task<IActionResult> CountBook()
+        {
+            return Ok(await bookService.GetCountBook());
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace BookStore.Service.Interfaces
     public interface IBookService
     {
         Task<List<BookViewModel>> GetBooksPaging(int page, int pageSize);
+        Task<int> GetCountBook();
         Task<List<BookViewModel>> GetBookTopNew(); 
         Task<List<BookViewModel>> GetBookBestSeller();
         Task<BookDetailViewModel> GetBookById(Guid bookId);
