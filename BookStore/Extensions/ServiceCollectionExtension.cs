@@ -27,6 +27,7 @@ namespace BookStore.Extensions
             IMapper mapper = mapperConfig.CreateMapper();
 
             services.AddSingleton(mapper);
+            services.AddSignalR();
             return services;
         }
 

@@ -104,6 +104,30 @@ namespace BookStore.Service.Mapping
             return autoMapper.Map<List<Image>, List<ImageViewModel>>(images);
         }
 
+        public List<OrderViewModel> MapOrder(List<Order> orders)
+        {
+            var listOrder = new List<OrderViewModel>();
+            foreach (var item in orders)
+            {
+                var order = new OrderViewModel
+                {
+                    OrderId = item.Id,
+                    PaymentMethod = item.Payment.Type,
+                    NameCus = item.Account.Name,
+                    OrderDate = item.DateCreated,
+                    PhoneNumber = item.PhoneNumber,
+                    Address = item.Address,
+                    City = item.City,
+                    District = item.District,
+                    TotalPrice = item.Total,
+                    Message = item.Message,
+                    OrderStatus = item.Status.NameStatus
+                };
+                listOrder.Add(order);
+            }
+            return listOrder;
+        }
+
         public List<ReviewViewModel> MapReview(List<Review> reviews)
         {
             var listReview = new List<ReviewViewModel>();

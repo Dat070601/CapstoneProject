@@ -267,5 +267,11 @@ namespace BookStore.Service
                 };
             }
         }
+
+        public async Task<List<OrderViewModel>> GetAllOrder()
+        {
+            var listOrder = await orderRepository.GetAllPaging().OrderByDescending(d => d.DateCreated).ToListAsync();
+            return mapperCustom.MapOrder(listOrder);
+        }
     }
 }

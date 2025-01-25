@@ -11,6 +11,7 @@ namespace BookStore.Models.DataViewModel
     {
         public Guid OrderId { get; set; }
         public Guid CustomerId { get; set; }
+        public string? NameCus { get; set; }
         public string? MessageOrder { get; set; }
         public string? PaymentMethod { get; set; }
         public string? PhoneNumber { get; set; }

@@ -18,6 +18,8 @@ namespace BookStore.Service.Mapping
             CreateMap<Book, BookDetailViewModel>();
             CreateMap<Review, ReviewViewModel>();
             CreateMap<Author, AuthorViewModel>();
+            CreateMap<Order, OrderViewModel>();
+            CreateMap<OrderDetail, OrderDetailViewModel>();
         }
     }
 }

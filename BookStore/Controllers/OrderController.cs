@@ -46,6 +46,13 @@ namespace BookStore.Controllers
             return Ok(res);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrder()
+        {
+            var res = await orderService.GetAllOrder();
+            return Ok(res);
+        }
+
         [HttpPut("status/{orderId}")]
         public async Task<IActionResult> UpdateStatus([FromBody] StatusRequest status, Guid orderId)
         {

@@ -15,5 +15,6 @@ namespace BookStore.Service.Interfaces
         List<ImageViewModel> MapImages(List<Image> images);
         List<ReviewViewModel> MapReview(List<Review> reviews);
         BookDetailViewModel MapBookDetail(Book bookDetail);
+        List<OrderViewModel> MapOrder(List<Order> orders);
     }
 }
